@@ -11,8 +11,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (scrolled) {
       ud_header.classList.add('sticky-header');
+      ud_header.classList.remove('absolute', 'bg-transparent');
     } else {
       ud_header.classList.remove('sticky-header');
+      ud_header.classList.add('absolute', 'bg-transparent');
     }
 
     // logo switching logic
