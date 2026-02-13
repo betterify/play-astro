@@ -1,5 +1,6 @@
 // public copy of dropdown.js
 // Handles responsive navbar toggling
+// NOTE: Header.astro also has an inline script for this, so we check for duplication
 (function(){
   console.log('%cDROPDOWN', 'color: blue; font-weight: bold', 'IIFE wrapper executed');
   
@@ -7,6 +8,12 @@
     console.log('%cDROPDOWN:init', 'color: blue', 'initializeNavbar() called');
     const navbarToggler = document.querySelector('#navbarToggler');
     const navbarCollapse = document.querySelector('#navbarCollapse');
+
+    // Check if Header already initialized this
+    if (navbarToggler && navbarToggler.dataset.navbarInitialized === 'true') {
+      console.log('%cDROPDOWN', 'color: blue', 'Header.astro already initialized navbar, skipping');
+      return;
+    }
 
     console.log('%cDROPDOWN:init', 'color: blue', 'navbarToggler found:', !!navbarToggler, navbarToggler);
     console.log('%cDROPDOWN:init', 'color: blue', 'navbarCollapse found:', !!navbarCollapse, navbarCollapse);
@@ -62,6 +69,8 @@
       }
     });
 
+    // Mark as initialized
+    navbarToggler.dataset.navbarInitialized = 'true';
     console.log('%cDROPDOWN:init', 'color: blue', 'All listeners attached successfully');
   }
 
