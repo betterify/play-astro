@@ -198,21 +198,15 @@ const menuitems = [
 
 <script>
   // Mobile menu toggle
-  console.log('%cHEADER:inline', 'color: red; font-weight: bold', 'Script block executing in Header');
   const navbarToggler = document.getElementById('navbarToggler');
   const navbarCollapse = document.getElementById('navbarCollapse');
 
-  console.log('%cHEADER:inline', 'color: red', 'Elements found:', { navbarToggler: !!navbarToggler, navbarCollapse: !!navbarCollapse });
-
   if (navbarToggler && navbarCollapse) {
-    console.log('%cHEADER:inline', 'color: red', 'Attaching click listener from Header inline script');
     navbarToggler.addEventListener('click', (e) => {
-      console.log('%cHEADER:click', 'color: darkred', 'HEADER inline click fired!', e);
       e.preventDefault();
       e.stopPropagation();
       navbarToggler.classList.toggle('navbarTogglerActive');
       navbarCollapse.classList.toggle('hidden');
-      console.log('%cHEADER:click', 'color: darkred', 'Menu hidden state now:', navbarCollapse.classList.contains('hidden'));
     });
 
     // Close menu when clicking on non-submenu links

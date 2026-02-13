@@ -112,7 +112,7 @@ const jsonLd = {
 
       .common-carousel .swiper-button-next,
       .common-carousel .swiper-button-prev {
-        @apply !static h-12 w-12 rounded-lg bg-white dark:bg-dark shadow-testimonial-btn text-dark dark:text-white m-0 ease-out duration-200 hover:bg-primary hover:text-white hover:shadow-none;
+        @apply !static h-12 w-12 rounded-lg bg-white dark:bg-dark shadow-testimonial-btn text-dark dark:text-white m-0 ease-out duration-200 hover:bg-primary hover:text-white hover:shadow-none opacity-100 !block !visible pointer-events-auto;
       }
 
       .common-carousel .swiper-button-next svg,
@@ -123,7 +123,7 @@ const jsonLd = {
     </style>
     <!-- Load public scripts for functionality -->
     <script src="/scripts/stickymenu.js" defer></script>
-    <script src="/scripts/dropdown.js" defer></script>
+    <!-- Dropdown handled by Header.astro inline script, skip public version to avoid duplication -->
     <script src="/scripts/darkMode.js" defer></script>
     <script src="/scripts/scrolltop.js" defer></script>
     <script src="/scripts/scrollmenu.js" defer></script>

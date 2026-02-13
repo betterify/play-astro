@@ -57,51 +57,6 @@
 
       console.log('%cTESTIMONIAL:init', 'color: green', 'Creating Swiper instance');
       
-      // Check if buttons exist and are visible
-      const prevBtn = container.querySelector('.swiper-button-prev');
-      const nextBtn = container.querySelector('.swiper-button-next');
-      const btnContainer = container.querySelector('.flex.items-center.justify-center');
-      
-      console.log('%cTESTIMONIAL:buttons', 'color: green', 'Prev button found:', !!prevBtn, prevBtn);
-      console.log('%cTESTIMONIAL:buttons', 'color: green', 'Next button found:', !!nextBtn, nextBtn);
-      console.log('%cTESTIMONIAL:buttons', 'color: green', 'Button container found:', !!btnContainer, btnContainer);
-      
-      if (btnContainer) {
-        console.log('%cTESTIMONIAL:buttons', 'color: green', 'Button CONTAINER styles:', {
-          display: window.getComputedStyle(btnContainer).display,
-          visibility: window.getComputedStyle(btnContainer).visibility,
-          opacity: window.getComputedStyle(btnContainer).opacity,
-          width: window.getComputedStyle(btnContainer).width,
-          height: window.getComputedStyle(btnContainer).height,
-          position: window.getComputedStyle(btnContainer).position,
-        });
-      }
-      
-      if (prevBtn) {
-        console.log('%cTESTIMONIAL:buttons', 'color: green', 'Prev button styles:', {
-          display: window.getComputedStyle(prevBtn).display,
-          visibility: window.getComputedStyle(prevBtn).visibility,
-          opacity: window.getComputedStyle(prevBtn).opacity,
-          pointerEvents: window.getComputedStyle(prevBtn).pointerEvents,
-          width: window.getComputedStyle(prevBtn).width,
-          height: window.getComputedStyle(prevBtn).height,
-        });
-      }
-      
-      if (nextBtn) {
-        console.log('%cTESTIMONIAL:buttons', 'color: green', 'Next button styles:', {
-          display: window.getComputedStyle(nextBtn).display,
-          visibility: window.getComputedStyle(nextBtn).visibility,
-          opacity: window.getComputedStyle(nextBtn).opacity,
-          pointerEvents: window.getComputedStyle(nextBtn).pointerEvents,
-          width: window.getComputedStyle(nextBtn).width,
-          height: window.getComputedStyle(nextBtn).height,
-        });
-      }
-      
-      // Check viewport size
-      console.log('%cTESTIMONIAL:viewport', 'color: green', 'Viewport size:', window.innerWidth, 'x', window.innerHeight);
-      
       // eslint-disable-next-line no-unused-vars
       const testimonialSwiper = new window.Swiper(container, {
         modules: [],
@@ -119,31 +74,6 @@
       });
 
       console.log('%cTESTIMONIAL:init', 'color: green', 'Swiper instance created successfully');
-      
-      // Check button state after Swiper init
-      if (prevBtn) {
-        console.log('%cTESTIMONIAL:buttons', 'color: green', 'Prev button AFTER Swiper:', {
-          display: window.getComputedStyle(prevBtn).display,
-          visibility: window.getComputedStyle(prevBtn).visibility,
-          opacity: window.getComputedStyle(prevBtn).opacity,
-          classes: prevBtn.className,
-          onclick: !!prevBtn.onclick,
-          width: window.getComputedStyle(prevBtn).width,
-          height: window.getComputedStyle(prevBtn).height,
-        });
-      }
-      
-      if (nextBtn) {
-        console.log('%cTESTIMONIAL:buttons', 'color: green', 'Next button AFTER Swiper:', {
-          display: window.getComputedStyle(nextBtn).display,
-          visibility: window.getComputedStyle(nextBtn).visibility,
-          opacity: window.getComputedStyle(nextBtn).opacity,
-          classes: nextBtn.className,
-          onclick: !!nextBtn.onclick,
-          width: window.getComputedStyle(nextBtn).width,
-          height: window.getComputedStyle(nextBtn).height,
-        });
-      }
     } catch (err) {
       console.error('%cTESTIMONIAL:error', 'color: red; font-weight: bold', 'Failed to initialize', err);
     }
