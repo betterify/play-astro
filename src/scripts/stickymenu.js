@@ -12,9 +12,16 @@ document.addEventListener('DOMContentLoaded', function () {
     if (scrolled) {
       ud_header.classList.add('sticky-header');
       ud_header.classList.remove('absolute', 'bg-transparent');
+      // enforce fixed positioning in case CSS ordering prevents utility override
+      ud_header.style.position = 'fixed';
+      ud_header.style.top = '0';
+      ud_header.style.left = '0';
     } else {
       ud_header.classList.remove('sticky-header');
       ud_header.classList.add('absolute', 'bg-transparent');
+      ud_header.style.position = 'absolute';
+      ud_header.style.top = '0';
+      ud_header.style.left = '0';
     }
 
     // logo switching logic
