@@ -1,13 +1,18 @@
 // public copy of dropdown.js
 // Handles responsive navbar toggling
 (function(){
-  // existing logic
+  // idempotent navbar initializer (public copy)
   function initializeNavbar() {
     const navbarToggler = document.querySelector('#navbarToggler');
     const navbarCollapse = document.querySelector('#navbarCollapse');
 
     if (!navbarToggler || !navbarCollapse) {
       console.warn('Navbar elements not found (public copy)');
+      return;
+    }
+
+    if (navbarToggler.dataset.dropdownInitialized === 'true') {
+      console.debug('dropdown: already initialized (public copy)');
       return;
     }
 
@@ -36,6 +41,8 @@
         });
       }
     });
+
+    navbarToggler.dataset.dropdownInitialized = 'true';
   }
 
   if (document.readyState === 'loading') {

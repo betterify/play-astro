@@ -1,5 +1,11 @@
 // public copy of darkMode.js
+// public darkMode: skip if header inline already initialized theme
 (function(){
+  if (window.__PLAY_ASTRO_THEME_INITIALIZED) {
+    console.debug('public darkMode: skipped (header already initialized)');
+    return;
+  }
+
   function initThemeSwitcher() {
     const themeSwitcher = document.getElementById('themeSwitcher');
 
@@ -37,6 +43,8 @@
 
     themeSwitcher.addEventListener('click', () => { themeSwitch(); });
     themeCheck();
+    // mark initialized so header script (if present) won't re-init
+    window.__PLAY_ASTRO_THEME_INITIALIZED = true;
   }
 
   if (document.readyState === 'loading') {

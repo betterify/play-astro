@@ -1,38 +1,58 @@
-// public copy of testimonial init with debug
-console.debug('testimonial: public copy loaded');
+// public copy of testimonial init using CDN (safe, no node_modules path)
+(function () {
+  console.debug('testimonial: public copy loaded (CDN)');
 
-document.addEventListener('DOMContentLoaded', async () => {
-  console.debug('testimonial: DOMContentLoaded (public copy)');
-  const container = document.querySelector('.testimonial-carousel');
-  if (!container) {
-    console.debug('testimonial: .testimonial-carousel not found (public copy)');
-    return;
+  function addCss(href) {
+    if (document.querySelector('link[data-swiper-css]')) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    link.setAttribute('data-swiper-css', 'true');
+    document.head.appendChild(link);
   }
 
-  try {
-    console.debug('testimonial: dynamic import (public copy)');
-    const [{ default: Swiper }, { Navigation }] = await Promise.all([
-      import('/node_modules/swiper/swiper-bundle.esm.browser.js'),
-      import('/node_modules/swiper/modules/navigation/navigation.js').then(m => ({ Navigation: m.Navigation })),
-    ]);
+  async function init() {
+    const container = document.querySelector('.testimonial-carousel');
+    if (!container) {
+      console.debug('testimonial: .testimonial-carousel not found (public CDN copy)');
+      return;
+    }
 
-    const testimonialSwiper = new Swiper(container, {
-      modules: [Navigation],
-      slidesPerView: 1,
-      spaceBetween: 30,
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      breakpoints: {
-        640: { slidesPerView: 2, spaceBetween: 30 },
-        1024: { slidesPerView: 3, spaceBetween: 30 },
-        1280: { slidesPerView: 3, spaceBetween: 30 },
-      },
-    });
+    try {
+      addCss('https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css');
+      // load ESM bundle from CDN
+      const mod = await import('https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.esm.browser.min.js');
+      const Swiper = mod.default || mod.Swiper || mod;
+      const Navigation = mod.Navigation || (mod.modules && mod.modules.Navigation);
 
-    console.debug('testimonial: swiper initialized (public copy)');
-  } catch (err) {
-    console.error('testimonial: Failed to initialize testimonial swiper (public copy)', err);
+      if (!Swiper) throw new Error('Swiper not found from CDN module');
+
+      // Initialize
+      // eslint-disable-next-line no-unused-vars
+      const testimonialSwiper = new Swiper(container, {
+        modules: Navigation ? [Navigation] : [],
+        slidesPerView: 1,
+        spaceBetween: 30,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        breakpoints: {
+          640: { slidesPerView: 2, spaceBetween: 30 },
+          1024: { slidesPerView: 3, spaceBetween: 30 },
+          1280: { slidesPerView: 3, spaceBetween: 30 },
+        },
+      });
+
+      console.debug('testimonial: swiper initialized (CDN)');
+    } catch (err) {
+      console.error('testimonial: Failed to initialize testimonial swiper (CDN)', err);
+    }
   }
-});
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();

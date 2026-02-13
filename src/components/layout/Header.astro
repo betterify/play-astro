@@ -270,5 +270,7 @@ const menuitems = [
 
     // Initialize theme
     initTheme();
+    // mark that header ran theme init to prevent public script from double-initializing
+    window.__PLAY_ASTRO_THEME_INITIALIZED = true;
   }
 </script>
