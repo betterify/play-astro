@@ -17,6 +17,15 @@
     }
 
     console.log('%cDROPDOWN:init', 'color: blue', 'Attaching click listener to navbarToggler');
+    
+    // Test if the button is interactive
+    console.log('%cDROPDOWN:init', 'color: blue', 'Button styles:', {
+      display: window.getComputedStyle(navbarToggler).display,
+      pointerEvents: window.getComputedStyle(navbarToggler).pointerEvents,
+      visibility: window.getComputedStyle(navbarToggler).visibility,
+      opacity: window.getComputedStyle(navbarToggler).opacity,
+    });
+    
     navbarToggler.addEventListener('click', (e) => {
       console.log('%cDROPDOWN:click', 'color: orange', 'Click event fired!');
       e.preventDefault();
@@ -25,6 +34,11 @@
       navbarCollapse.classList.toggle('hidden');
       console.log('%cDROPDOWN:click', 'color: orange', 'Menu hidden state:', navbarCollapse.classList.contains('hidden'));
       console.log('%cDROPDOWN:click', 'color: orange', 'Toggler active state:', navbarToggler.classList.contains('navbarTogglerActive'));
+    });
+
+    // Also add mousedown listener as backup
+    navbarToggler.addEventListener('mousedown', (e) => {
+      console.log('%cDROPDOWN:mousedown', 'color: purple', 'Mousedown event fired!');
     });
 
     document.querySelectorAll('#navbarCollapse ul li:not(.submenu-item) a').forEach((e) =>

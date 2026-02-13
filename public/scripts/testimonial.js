@@ -56,6 +56,31 @@
       }
 
       console.log('%cTESTIMONIAL:init', 'color: green', 'Creating Swiper instance');
+      
+      // Check if buttons exist and are visible
+      const prevBtn = container.querySelector('.swiper-button-prev');
+      const nextBtn = container.querySelector('.swiper-button-next');
+      console.log('%cTESTIMONIAL:buttons', 'color: green', 'Prev button found:', !!prevBtn, prevBtn);
+      console.log('%cTESTIMONIAL:buttons', 'color: green', 'Next button found:', !!nextBtn, nextBtn);
+      
+      if (prevBtn) {
+        console.log('%cTESTIMONIAL:buttons', 'color: green', 'Prev button styles:', {
+          display: window.getComputedStyle(prevBtn).display,
+          visibility: window.getComputedStyle(prevBtn).visibility,
+          opacity: window.getComputedStyle(prevBtn).opacity,
+          pointerEvents: window.getComputedStyle(prevBtn).pointerEvents,
+        });
+      }
+      
+      if (nextBtn) {
+        console.log('%cTESTIMONIAL:buttons', 'color: green', 'Next button styles:', {
+          display: window.getComputedStyle(nextBtn).display,
+          visibility: window.getComputedStyle(nextBtn).visibility,
+          opacity: window.getComputedStyle(nextBtn).opacity,
+          pointerEvents: window.getComputedStyle(nextBtn).pointerEvents,
+        });
+      }
+      
       // eslint-disable-next-line no-unused-vars
       const testimonialSwiper = new window.Swiper(container, {
         modules: [],
@@ -73,6 +98,27 @@
       });
 
       console.log('%cTESTIMONIAL:init', 'color: green', 'Swiper instance created successfully');
+      
+      // Check button state after Swiper init
+      if (prevBtn) {
+        console.log('%cTESTIMONIAL:buttons', 'color: green', 'Prev button AFTER Swiper:', {
+          display: window.getComputedStyle(prevBtn).display,
+          visibility: window.getComputedStyle(prevBtn).visibility,
+          opacity: window.getComputedStyle(prevBtn).opacity,
+          classes: prevBtn.className,
+          onclick: !!prevBtn.onclick,
+        });
+      }
+      
+      if (nextBtn) {
+        console.log('%cTESTIMONIAL:buttons', 'color: green', 'Next button AFTER Swiper:', {
+          display: window.getComputedStyle(nextBtn).display,
+          visibility: window.getComputedStyle(nextBtn).visibility,
+          opacity: window.getComputedStyle(nextBtn).opacity,
+          classes: nextBtn.className,
+          onclick: !!nextBtn.onclick,
+        });
+      }
     } catch (err) {
       console.error('%cTESTIMONIAL:error', 'color: red; font-weight: bold', 'Failed to initialize', err);
     }
