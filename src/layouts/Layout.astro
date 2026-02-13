@@ -105,18 +105,19 @@ const jsonLd = {
         @apply top-[-8px] rotate-[135deg];
       }
 
-      .common-carousel .swiper-button-next:after,
-      .common-carousel .swiper-button-prev:after {
+      .swiper-button-next:after,
+      .swiper-button-prev:after {
         @apply hidden;
       }
 
-      .common-carousel .swiper-button-next,
-      .common-carousel .swiper-button-prev {
-        @apply w-12 h-12 rounded-lg bg-white dark:bg-dark shadow-testimonial-btn text-dark dark:text-white transition-all duration-200 hover:bg-primary hover:text-white hover:shadow-none cursor-pointer flex items-center justify-center flex-shrink-0;
+      /* Swiper navigation buttons */
+      .swiper-button-next,
+      .swiper-button-prev {
+        @apply w-12 h-12 rounded-lg bg-white dark:bg-dark shadow-testimonial-btn text-dark dark:text-white transition-all duration-200 hover:bg-primary hover:text-white hover:shadow-none cursor-pointer flex items-center justify-center flex-shrink-0 z-20 pointer-events-auto;
       }
 
-      .common-carousel .swiper-button-next:hover,
-      .common-carousel .swiper-button-prev:hover {
+      .swiper-button-next:hover,
+      .swiper-button-prev:hover {
         @apply bg-primary text-white;
       }
 
