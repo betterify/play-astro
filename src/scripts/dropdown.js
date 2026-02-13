@@ -1,7 +1,11 @@
 // ===== responsive navbar
 function initializeNavbar() {
+  console.debug('dropdown: initializeNavbar called');
   const navbarToggler = document.querySelector('#navbarToggler');
   const navbarCollapse = document.querySelector('#navbarCollapse');
+
+  console.debug('dropdown: navbarToggler element:', navbarToggler);
+  console.debug('dropdown: navbarCollapse element:', navbarCollapse);
 
   if (!navbarToggler || !navbarCollapse) {
     console.warn('Navbar elements not found');
@@ -9,8 +13,10 @@ function initializeNavbar() {
   }
 
   navbarToggler.addEventListener('click', () => {
+    console.debug('dropdown: navbarToggler clicked');
     navbarToggler.classList.toggle('navbarTogglerActive');
     navbarCollapse.classList.toggle('hidden');
+    console.debug('dropdown: menu toggled, hidden class now:', navbarCollapse.classList.contains('hidden'));
   });
 
   //===== close navbar-collapse when a link is clicked
