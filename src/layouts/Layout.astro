@@ -112,7 +112,12 @@ const jsonLd = {
 
       .common-carousel .swiper-button-next,
       .common-carousel .swiper-button-prev {
-        @apply !static h-12 w-12 rounded-lg bg-white dark:bg-dark shadow-testimonial-btn text-dark dark:text-white m-0 ease-out duration-200 hover:bg-primary hover:text-white hover:shadow-none opacity-100 !block !visible pointer-events-auto;
+        @apply w-12 h-12 rounded-lg bg-white dark:bg-dark shadow-testimonial-btn text-dark dark:text-white transition-all duration-200 hover:bg-primary hover:text-white hover:shadow-none cursor-pointer flex items-center justify-center flex-shrink-0;
+      }
+
+      .common-carousel .swiper-button-next:hover,
+      .common-carousel .swiper-button-prev:hover {
+        @apply bg-primary text-white;
       }
 
       .common-carousel .swiper-button-next svg,

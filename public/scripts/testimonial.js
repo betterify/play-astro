@@ -74,6 +74,20 @@
       });
 
       console.log('%cTESTIMONIAL:init', 'color: green', 'Swiper instance created successfully');
+      
+      // Verify navigation buttons are working
+      const prevBtn = document.querySelector('.swiper-button-prev');
+      const nextBtn = document.querySelector('.swiper-button-next');
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          console.log('%cTESTIMONIAL:nav', 'color: green', 'Prev button clicked (manual listener)');
+        });
+      }
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          console.log('%cTESTIMONIAL:nav', 'color: green', 'Next button clicked (manual listener)');
+        });
+      }
     } catch (err) {
       console.error('%cTESTIMONIAL:error', 'color: red; font-weight: bold', 'Failed to initialize', err);
     }
