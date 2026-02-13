@@ -1,5 +1,4 @@
 import { getCollection } from 'astro:content';
-import { SITE } from '../../astro.config.mjs';
 
 export async function GET() {
   const pages = [
