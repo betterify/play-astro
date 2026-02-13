@@ -3,6 +3,7 @@
 (function(){
   // idempotent navbar initializer (public copy)
   function initializeNavbar() {
+    console.debug('dropdown: initializeNavbar called');
     const navbarToggler = document.querySelector('#navbarToggler');
     const navbarCollapse = document.querySelector('#navbarCollapse');
 
@@ -17,8 +18,11 @@
     }
 
     navbarToggler.addEventListener('click', () => {
+      console.debug('dropdown: navbarToggler clicked, toggling menu visibility');
       navbarToggler.classList.toggle('navbarTogglerActive');
+      console.debug('dropdown: navbarTogglerActive toggled, current classes:', navbarToggler.className);
       navbarCollapse.classList.toggle('hidden');
+      console.debug('dropdown: hidden toggle applied, navbarCollapse classes:', navbarCollapse.className);
     });
 
     document.querySelectorAll('#navbarCollapse ul li:not(.submenu-item) a').forEach((e) =>

@@ -19,9 +19,12 @@
     }
 
     try {
-      addCss('https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css');
-      // load ESM bundle from CDN
-      const mod = await import('https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.esm.browser.min.js');
+      console.debug('testimonial: loading Swiper from unpkg CDN');
+      addCss('https://unpkg.com/swiper@10/swiper-bundle.min.css');
+      // load ESM bundle from unpkg (more reliable than jsDelivr)
+      const mod = await import('https://unpkg.com/swiper@10/swiper-bundle.esm.browser.js');
+      console.debug('testimonial: Swiper module imported successfully', mod);
+      
       const Swiper = mod.default || mod.Swiper || mod;
       const Navigation = mod.Navigation || (mod.modules && mod.modules.Navigation);
 
