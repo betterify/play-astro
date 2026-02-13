@@ -4,10 +4,15 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 
 document.addEventListener('DOMContentLoaded', async () => {
+  console.debug('testimonial: DOMContentLoaded');
   const container = document.querySelector('.testimonial-carousel');
-  if (!container) return;
+  if (!container) {
+    console.debug('testimonial: .testimonial-carousel not found, skipping init');
+    return;
+  }
 
   try {
+    console.debug('testimonial: initializing swiper');
     // Dynamically load Swiper only on the client to avoid any SSR/evaluation issues
     const [{ default: Swiper }, { Navigation }] = await Promise.all([
       import('swiper'),
@@ -31,8 +36,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         1280: { slidesPerView: 3, spaceBetween: 30 },
       },
     });
+
+    console.debug('testimonial: swiper initialized');
   } catch (err) {
     // Fail silently but log to console for debugging
-    console.error('Failed to initialize testimonial swiper', err);
+    console.error('testimonial: Failed to initialize testimonial swiper', err);
   }
 });
