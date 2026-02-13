@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Point crawlers to the sitemap
+Sitemap: https://example.com/sitemap.xml
+
+# If you want to block staging or specific paths, edit below
+# Disallow: /admin

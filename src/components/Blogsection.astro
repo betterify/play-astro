@@ -1,5 +1,6 @@
 ---
 import { getCollection } from "astro:content";
+import OptimizedImage from './OptimizedImage.astro';
 
 // Filter blog entries with 'draft: false' & date before current date
 const publishedBlogEntries = await getCollection("blog", ({ data }) => {
@@ -38,7 +39,7 @@ publishedBlogEntries.sort(function (a, b) {
             <a class="wow fadeInUp group block mb-10" data-wow-delay=".1s" href={`/blog/${blogPostEntry.slug}`}>
               <div class="mb-8 overflow-hidden rounded-[5px]">
                 <span class="block">
-                  <img
+                  <OptimizedImage
                     src={blogPostEntry.data.image.src}
                     alt={blogPostEntry.data.image.alt}
                     class="w-full ease-in duration-300 group-hover:rotate-6 group-hover:scale-125"

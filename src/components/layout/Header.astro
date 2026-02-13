@@ -43,7 +43,7 @@ const menuitems = [
 <header class="ud-header absolute top-0 left-0 z-40 flex w-full items-center bg-transparent">
   <div class="container">
     <div class="relative -mx-4 flex items-center justify-between">
-      <div class="w-60 max-w-full px-4">
+      <div class="w-20 max-w-full px-4">
         <a href="/" class="navbar-logo block w-full py-5">
           {(Astro.url.pathname === '/') ? (
             <img
@@ -62,6 +62,7 @@ const menuitems = [
         <div>
           <button
             id="navbarToggler"
+            type="button"
             class="absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
           >
             <span
@@ -194,3 +195,80 @@ const menuitems = [
     </div>
   </div>
 </header>
+
+<script>
+  // Mobile menu toggle
+  const navbarToggler = document.getElementById('navbarToggler');
+  const navbarCollapse = document.getElementById('navbarCollapse');
+
+  if (navbarToggler && navbarCollapse) {
+    navbarToggler.addEventListener('click', (e) => {
+      e.preventDefault();
+      navbarToggler.classList.toggle('navbarTogglerActive');
+      navbarCollapse.classList.toggle('hidden');
+    });
+
+    // Close menu when clicking on non-submenu links
+    const navLinks = navbarCollapse.querySelectorAll('ul li:not(.submenu-item) a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navbarToggler.classList.remove('navbarTogglerActive');
+        navbarCollapse.classList.add('hidden');
+      });
+    });
+
+    // Handle submenu toggles
+    const submenuItems = navbarCollapse.querySelectorAll('.submenu-item');
+    submenuItems.forEach(item => {
+      const link = item.querySelector('a');
+      if (link) {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const submenu = item.querySelector('.submenu');
+          if (submenu) {
+            submenu.classList.toggle('hidden');
+          }
+        });
+      }
+    });
+  }
+</script>
+
+<script>
+  // Dark mode / Light mode toggle
+  const themeSwitcher = document.getElementById('themeSwitcher');
+  const userTheme = localStorage.getItem('theme');
+  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  if (themeSwitcher) {
+    // Initialize theme on page load
+    const initTheme = () => {
+      if (userTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else if (userTheme === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        if (systemTheme) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      }
+    };
+
+    // Handle theme toggle
+    themeSwitcher.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    // Initialize theme
+    initTheme();
+  }
+</script>

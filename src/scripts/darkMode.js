@@ -1,7 +1,11 @@
 /* ========  themeSwitcher start ========= */
-document.addEventListener('DOMContentLoaded', () => {
-  // themeSwitcher
+function initThemeSwitcher() {
   const themeSwitcher = document.getElementById('themeSwitcher');
+
+  if (!themeSwitcher) {
+    console.warn('Theme switcher button not found');
+    return;
+  }
 
   // Theme Vars
   const userTheme = localStorage.getItem('theme');
@@ -33,11 +37,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // call theme switch on clicking buttons
+  // call theme switch on clicking button
   themeSwitcher.addEventListener('click', () => {
     themeSwitch();
   });
 
   // invoke theme check on initial load
   themeCheck();
-});
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initThemeSwitcher);
+} else {
+  initThemeSwitcher();
+}
+

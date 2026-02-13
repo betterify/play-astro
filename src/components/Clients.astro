@@ -1,4 +1,5 @@
 ---
+import OptimizedImage from './OptimizedImage.astro';
 const clients = [
   { ref: "https://tailgrids.com", image: "/assets/brands/graygrids.svg", whiteImage: "/assets/brands/graygrids-white.svg", name: "tailgrids"},
   { ref: "https://ayroui.com", image: "/assets/brands/lineicons.svg", whiteImage: "/assets/brands/lineicons-white.svg", name: "ayroui"},
@@ -19,16 +20,8 @@ const clients = [
             target="_blank"
             rel="nofollow noopner"
           >
-            <img
-              src={client.image}
-              alt={client.name}
-              class="dark:hidden"
-            />
-            <img
-              src={client.whiteImage}
-              alt={client.name}
-              class="hidden dark:block"
-            />
+            <OptimizedImage src={client.image} alt={client.name} class="dark:hidden" />
+            <OptimizedImage src={client.whiteImage} alt={client.name} class="hidden dark:block" />
           </a>
         ))
       }
